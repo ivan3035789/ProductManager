@@ -14,8 +14,8 @@ public class ProductManagerTest {
     private ProductManager manager = new ProductManager(repository);
     private Book firstBook = new Book(1, "The Master and Margarita", 500, "Mikhail Bulgakov");
     private Book secondBook = new Book(2, "A dog's heart", 1000, "Mikhail Bulgakov");
-    private Smartphone firstSmartphone = new Smartphone(3, "6.1", 59_000, "samsung");
-    private Smartphone secondSmartphone = new Smartphone(4, "5.0", 17_000, "samsung");
+    private Smartphone firstSmartphone = new Smartphone(1, "s8", 59_000, "samsung");
+    private Smartphone secondSmartphone = new Smartphone(2, "a50", 17_000, "samsung");
 
 
     @BeforeEach
@@ -35,6 +35,20 @@ public class ProductManagerTest {
     }
 
     @Test
+    public void shouldFindBySmartphoneManufacturer() {
+        Product[] expected = new Product[]{firstSmartphone, secondSmartphone};
+        Product[] actual = manager.searchBy("samsung");
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindBySmartphoneTitle() {
+        Product[] expected = new Product[]{secondSmartphone};
+        Product[] actual = manager.searchBy("a50");
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void shouldFindBookAuthor() {
         Product[] expected = new Product[]{firstBook, secondBook};
         Product[] actual = manager.searchBy("Mikhail Bulgakov");
@@ -45,20 +59,6 @@ public class ProductManagerTest {
     public void shouldFindByBookTitle() {
         Product[] expected = new Product[]{firstBook};
         Product[] actual = manager.searchBy("The Master and Margarita");
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindBySmartphoneManufacturer() {
-        Product[] expected = new Product[]{firstSmartphone, secondSmartphone};
-        Product[] actual = manager.searchBy("samsung");
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindBySmartphoneTitle() {
-        Product[] expected = new Product[]{secondSmartphone};
-        Product[] actual = manager.searchBy("5.0");
         assertArrayEquals(expected, actual);
     }
 }

@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class ProductRepositoryTest {
     private ProductRepository repository = new ProductRepository();
-    private Book firstBook = new Book(1, "The Little Prince", 228, "Antoine de Saint-Exupery");
-    private Book secondBook = new Book(2, "The Master and Margarita", 307, "Mikhail Bulgakov");
+    private Book firstBook = new Book(1, "The Master and Margarita", 500, "Mikhail Bulgakov");
+    private Book secondBook = new Book(2, "A dog's heart", 1000, "Mikhail Bulgakov");
 
     @Test
     public void shouldRemoveByID() {
